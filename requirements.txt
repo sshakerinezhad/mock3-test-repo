@@ -1,0 +1,11 @@
+openai==1.102.0
+python-dotenv==1.1.1
+httpx==0.28.1
+pyyaml
+tqdm
+pytest
+pytest-asyncio
+pypdf
+openpyxl
+python-docx
+matplotlib
