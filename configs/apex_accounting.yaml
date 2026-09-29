@@ -19,6 +19,6 @@ system_prompt: |
 # temperature omitted: reasoning models reject it (llm.build_params drops it for openai:gpt-5* anyway)
 max_tokens: 32000      # sent as max_completion_tokens; includes hidden reasoning tokens, so keep it large
 n_samples: 3           # Mean Criteria@3
-workers: 4             # concurrent calls PER MODEL; low because single requests are up to ~600k tokens (rate limits)
+workers: 1             # concurrent calls PER MODEL; 1 because the org limit is 500k tokens/min per model and big tasks are 250-600k tokens
 max_retries: 4
 timeout: 900           # seconds per call; reasoning over several hundred k input tokens can take many minutes
