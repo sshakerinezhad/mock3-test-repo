@@ -59,6 +59,7 @@ from pathlib import Path
 from typing import NoReturn
 
 import metrics
+from loaders import apex_accounting
 from classifier import FENCE, categories, load_prompt
 
 NO_RESPONSE = "(the model returned no response)"
@@ -100,6 +101,8 @@ def load_rubrics(path: str | Path) -> dict[int, list[dict]]:
     path = Path(path)
     if not path.exists():
         die(f"data not found: {path}")
+    if apex_accounting.is_apex_accounting(path):
+        return apex_accounting.rubrics(path)
     with open(path, encoding="utf-8", newline="") as f:
         return {int(r["Task ID"]): [{"id": k, "description": v["description"]}
                                     for k, v in json.loads(r["Rubric JSON"]).items()]
@@ -111,6 +114,8 @@ def load_gold(path: str | Path) -> dict[int, str]:
     path = Path(path)
     if not path.exists():
         die(f"gold answers not found: {path}")
+    if apex_accounting.is_apex_accounting(path):
+        return apex_accounting.gold(path)
     gold = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(gold, dict) or not gold:
         die(f"{path}: expected a non-empty {{task_id: text}} object")

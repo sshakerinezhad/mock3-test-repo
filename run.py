@@ -26,6 +26,7 @@ from tqdm import tqdm
 
 import attachments
 import llm
+from loaders import apex_accounting
 
 RESULTS_DIR = Path("results")
 PRICING_PATH = Path(__file__).with_name("pricing.json")
@@ -116,6 +117,8 @@ def load_tasks(path: str | Path, task_ids: list | None = None, max_chars: int = 
     path = Path(path)
     if path.suffix == ".csv":
         return _load_apex_csv(path, task_ids, max_chars)
+    if apex_accounting.is_apex_accounting(path):
+        return apex_accounting.tasks(path, task_ids, max_chars)
     return _select(_load_jsonl(path), task_ids, lambda t: t["id"], path)
 
 

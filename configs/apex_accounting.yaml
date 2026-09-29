@@ -1,0 +1,24 @@
+# APEX-Accounting dev set: all 10 tasks (World 9, law-firm accounting), 2 models x 3 runs.
+# Run:   python run.py configs/apex_accounting.yaml --name apex_acc_v1 --max-attachment-chars 2000000
+#        (tasks 4, 5, 6, 13, 14, 26 carry one 0.8-1.7M-char file each; the default 200k per-file cap would stop them)
+# Judge: python -m loaders.apex_accounting results/apex_acc_v1/raw.jsonl <model> outputs_<model>.jsonl
+#        python mock-3-judge.py --data data/apex/data/dev.jsonl --outputs outputs_<model>.jsonl --out results/apex_acc_v1/judge_<model>
+#
+# Prompt sent = task prompt + "==== Attached files content: ====" + one "=== <filename> ===" block per context file.
+# Largest task (26) is ~1.77M chars, est. 450-700k tokens; both models list a ~1.05M context on OpenRouter.
+
+tasks: data/apex/data/dev.jsonl
+
+models:
+  - openai:gpt-5.6-luna
+  - openai:gpt-5.6-sol
+
+system_prompt: |
+  You are a helpful assistant.
+
+# temperature omitted: reasoning models reject it (llm.build_params drops it for openai:gpt-5* anyway)
+max_tokens: 32000      # sent as max_completion_tokens; includes hidden reasoning tokens, so keep it large
+n_samples: 3           # Mean Criteria@3
+workers: 3             # concurrent calls PER MODEL; low because single requests are up to ~700k tokens (rate limits)
+max_retries: 4
+timeout: 900           # seconds per call; reasoning over several hundred k input tokens can take many minutes
