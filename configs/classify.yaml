@@ -1,0 +1,18 @@
+# Failure classifier: one call per failed rubric criterion (judge_v1_gemini, luna + sol).
+# Tasks: python scripts/failures_to_tasks.py
+# Run:   python run.py configs/classify.yaml --name classify/judge
+#        (classify/judge, not classify: results/classify/ already holds tasks.jsonl and run.py refuses an existing folder)
+# Score: python classifier.py score results/classify/judge/raw.jsonl
+#
+# Classifier prompt (prompts/classify_criteria.md) is at the top of each task's user message, so system_prompt stays empty.
+
+tasks: results/classify/tasks.jsonl
+
+models:
+  - openrouter:google/gemini-2.5-flash
+
+system_prompt: ""
+
+max_tokens: 400
+n_samples: 1
+workers: 8
