@@ -5,12 +5,12 @@ Reply with one JSON object and nothing else:
 {"category": "<name>", "why": "<one sentence, quoting the response or the criterion>"}
 
 Categories:
-- missing: the response never addresses what the criterion asks for
-- wrong_value: the response gives a value, and it is not the expected one
-- precision_or_unit: right quantity, wrong unit, rounding or precision
-- scattergun: several different values given for the one quantity the criterion names
-- unsupported: a claim made with no working or source when the criterion asks for one
-- format: the content is there but not in the form the criterion requires (table, section, file)
-- judge_doubt: the response looks correct to you; the judge or the criterion may be wrong
+- information_gathering: the response missed or misread a fact that was in the context files
+- instruction_following: the response ignored a stated requirement of the prompt (rounding, format, which items to include, where to answer)
+- reasoning: the facts were gathered but the calculation or logic is wrong
+- tool_use: a spreadsheet, file or computation was handled wrongly (wrong sheet, wrong column, parse error)
+- planning_reflection: the response did not check its own work, gave conflicting values, or stopped before finishing
+- communication: the right answer is present but stated so the criterion cannot find it (buried, ambiguous, several candidates)
+- other: none of the above; say why in the why field
 
 If multiple categories apply, pick the one higher in the list.
