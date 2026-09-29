@@ -1,0 +1,21 @@
+# Stage 1 of 2: the 4 small tasks (7, 17, 23, 30; 14k-131k chars) so they finish first. Everything below
+# tasks: is identical to apex_accounting.yaml, so these calls hit the cache when stage 2 (all 10 tasks) runs.
+# Run: python run.py configs/apex_accounting_small.yaml --name apex_acc_small
+
+tasks: data/apex/data/dev.jsonl
+task_ids: [task_55332112bcb94ff4b489844dba2d91e0, task_73b89e1fd7744eaa83c1b39fecd1183a,
+           task_6140e09e1ce6482c8b4cfcdc007f758c, task_b66225e0cce148509c5d4c9b4773e554]
+
+models:
+  - openai:gpt-5.6-luna
+  - openai:gpt-5.6-sol
+
+system_prompt: |
+  You are a helpful assistant.
+
+# temperature omitted: reasoning models reject it (llm.build_params drops it for openai:gpt-5* anyway)
+max_tokens: 32000      # sent as max_completion_tokens; includes hidden reasoning tokens, so keep it large
+n_samples: 3           # Mean Criteria@3
+workers: 4             # concurrent calls PER MODEL; low because single requests are up to ~600k tokens (rate limits)
+max_retries: 4
+timeout: 900           # seconds per call; reasoning over several hundred k input tokens can take many minutes
