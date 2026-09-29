@@ -1,0 +1,68 @@
+{
+  "input": "results/classify/judge/raw.jsonl",
+  "labels": null,
+  "categories": [
+    "information_gathering",
+    "instruction_following",
+    "reasoning",
+    "tool_use",
+    "planning_reflection",
+    "communication",
+    "other",
+    "unparsed"
+  ],
+  "models": {
+    "openrouter:google/gemini-2.5-flash": {
+      "n": 193,
+      "variants": {
+        "luna": {
+          "n": 134,
+          "counts": {
+            "information_gathering": 23,
+            "instruction_following": 12,
+            "reasoning": 91,
+            "tool_use": 0,
+            "planning_reflection": 0,
+            "communication": 5,
+            "other": 0,
+            "unparsed": 3
+          },
+          "share": {
+            "information_gathering": 0.17164179104477612,
+            "instruction_following": 0.08955223880597014,
+            "reasoning": 0.6791044776119403,
+            "tool_use": 0.0,
+            "planning_reflection": 0.0,
+            "communication": 0.03731343283582089,
+            "other": 0.0,
+            "unparsed": 0.022388059701492536
+          }
+        },
+        "sol": {
+          "n": 59,
+          "counts": {
+            "information_gathering": 8,
+            "instruction_following": 4,
+            "reasoning": 44,
+            "tool_use": 0,
+            "planning_reflection": 0,
+            "communication": 2,
+            "other": 1,
+            "unparsed": 0
+          },
+          "share": {
+            "information_gathering": 0.13559322033898305,
+            "instruction_following": 0.06779661016949153,
+            "reasoning": 0.7457627118644068,
+            "tool_use": 0.0,
+            "planning_reflection": 0.0,
+            "communication": 0.03389830508474576,
+            "other": 0.01694915254237288,
+            "unparsed": 0.0
+          }
+        }
+      },
+      "agreement": null
+    }
+  }
+}

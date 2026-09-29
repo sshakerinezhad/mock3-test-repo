@@ -1,0 +1,56 @@
+{
+  "kind": "paired",
+  "a": "luna",
+  "b": "sol",
+  "n_tasks": 10,
+  "mean_diff": 0.19444444444444448,
+  "ci": [
+    0.0652777777777778,
+    0.3402777777777778
+  ],
+  "up": 6,
+  "down": 0,
+  "same": 4,
+  "per_task": [
+    {
+      "task": "task_33d901304f4f48179e555ada729146c4",
+      "diff": 0.0
+    },
+    {
+      "task": "task_55332112bcb94ff4b489844dba2d91e0",
+      "diff": 0.0
+    },
+    {
+      "task": "task_848b939d069a4378b3e6e1d989aca7fc",
+      "diff": 0.0
+    },
+    {
+      "task": "task_b66225e0cce148509c5d4c9b4773e554",
+      "diff": 0.0
+    },
+    {
+      "task": "task_f0d206c41e7b4a918b24dc38f5f2eccc",
+      "diff": 0.05555555555555558
+    },
+    {
+      "task": "task_8654129a5aac4ca583a47ffcdea8ebc0",
+      "diff": 0.1527777777777778
+    },
+    {
+      "task": "task_baa139877a4d4fbfa601df50610262d5",
+      "diff": 0.16666666666666674
+    },
+    {
+      "task": "task_3155ba0f5d37465cb051c89ead5ec9bb",
+      "diff": 0.4722222222222222
+    },
+    {
+      "task": "task_6140e09e1ce6482c8b4cfcdc007f758c",
+      "diff": 0.5416666666666667
+    },
+    {
+      "task": "task_73b89e1fd7744eaa83c1b39fecd1183a",
+      "diff": 0.5555555555555556
+    }
+  ]
+}
